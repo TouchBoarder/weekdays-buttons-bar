@@ -4,10 +4,30 @@
 
 Material Weekdays Buttons allows you to easily implement a customizable and flexible weekdays 'button bar' in your app.
 
+## Sample App
+
+The included sample app can be tested on Google Play
+
+<a href="https://play.google.com/store/apps/details?id=com.touchboarder.demo.weekdaysbuttonsbar&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><img alt="Get it on Google Play" width="200"   src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge-border.png" /></a>
 
 ## Gradle Dependency
 
-In progress...
+The following goes in your module's `build.gradle` file:
+
+```Gradle
+repositories {
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+
+    // ... other dependencies here
+
+     dependencies {
+            compile 'com.github.TouchBoarder:weekdays-buttons-bar:v0.1-alpha'
+     }
+}
+```
 
 
 
@@ -47,7 +67,7 @@ WeekdaysDataSource wds = new WeekdaysDataSource(this, R.id.weekdays_stub)
     .start(this);
 ```
 
-R.id.weekdays_stub references the `ViewStub`, which is replaced with the WeekdaysDataSource RecyclerView when `start()` is called.
+`R.id.weekdays_stub` references the `ViewStub`, which is replaced with the WeekdaysDataSource RecyclerView when `start()` is called.
 
 Note that the parameter in `start()` is a Callback interface implementer which receives WeekdaysDataSource events.
 
@@ -209,7 +229,7 @@ protected void onSaveInstanceState(Bundle outState) {
 }
 ```
 
-# Library depends on following external libraries:
+## Library depends on following external libraries:
 
 TextDrawable Library: https://github.com/afollestad/TextDrawable (fork)
     This library is used to create the drawables for the buttons:
@@ -234,8 +254,8 @@ TextDrawable Library: https://github.com/afollestad/TextDrawable (fork)
         .start(this);
  ``` 
 
-# Inspired by:
+### Inspired by:
 
 Material Contextual Action Bar Library: https://github.com/afollestad/material-cab
-Weekdays Buttons library is inspired by the attach implementation code in the 'material-cab' library designed by Aidan Follestad
+Weekdays Buttons library is inspired by the attach implementation code in the 'material-cab' library designed by Aidan Follestad.
 If you need a Contextual Action Bar with similar api? look it up.
