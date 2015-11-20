@@ -1,6 +1,6 @@
 # Material Weekdays Buttons Bar
 
-![Showcase Image](https://raw.githubusercontent.com/touchboarder/material-weekdays-buttons/master/art/screenshot1.png)
+![Showcase Image](https://github.com/TouchBoarder/weekdays-buttons-bar/raw/master/art/screenshot1.png)
 
 Material Weekdays Buttons allows you to easily implement a customizable and flexible weekdays 'button bar' in your app.
 
@@ -126,41 +126,41 @@ if (wds.isAllDaysSelected()) {
     -->
     <item name="weekdays_item_height">40dp</item>
     
-        <!-- 
-            Changes the default margin spacing for all Weekdays Buttons.
-            Defaults to 2dp.
-        -->
-        <item name="weekdays_item_margin">0dp</item>
+    <!-- 
+        Changes the default margin spacing for all Weekdays Buttons.
+        Defaults to 2dp.
+    -->
+    <item name="weekdays_item_margin">0dp</item>
 
-       <!-- 
-            Changes the default selected color for all Weekdays Buttons.
-            Defaults to the default value of ?colorAccent (the AppCompat theme attribute).
-        -->
-        <item name="weekdays_selected_color">?colorPrimary</item>
-        
-       <!-- 
-            Changes the default unselected color for all Weekdays Buttons.
-            Defaults to the default value of ?colorPrimary (the AppCompat theme attribute).
-        -->
-        <item name="weekdays_unselected_color">?colorPrimaryDark</item>
+   <!-- 
+        Changes the default selected color for all Weekdays Buttons.
+        Defaults to the default value of ?colorAccent (the AppCompat theme attribute).
+    -->
+    <item name="weekdays_selected_color">?colorPrimary</item>
     
-           <!-- 
-                Changes the default text selected color for all Weekdays Buttons.
-                Defaults to the default value of ?titleTextColor (the AppCompat theme attribute).
-            -->
-            <item name="weekdays_text_selected_color">?colorAccent</item>
-            
-           <!-- 
-                Changes the default text unselected color for all Weekdays Buttons.
-                Defaults to the default value of ?titleTextColor (the AppCompat theme attribute).
-            -->
-            <item name="weekdays_text_unselected_color">?colorAccent</item>
+   <!-- 
+        Changes the default unselected color for all Weekdays Buttons.
+        Defaults to the default value of ?colorPrimary (the AppCompat theme attribute).
+    -->
+    <item name="weekdays_unselected_color">?colorPrimaryDark</item>
     
-            <!--
-               Changes the default layout padding for all Weekdays Buttons.
-               Defaults to 0dp.
-           -->
-            <item name="weekdays_layout_padding">8dp</item>
+   <!-- 
+        Changes the default text selected color for all Weekdays Buttons.
+        Defaults to the default value of ?titleTextColor (the AppCompat theme attribute).
+    -->
+    <item name="weekdays_text_selected_color">?colorAccent</item>
+    
+   <!-- 
+        Changes the default text unselected color for all Weekdays Buttons.
+        Defaults to the default value of ?titleTextColor (the AppCompat theme attribute).
+    -->
+    <item name="weekdays_text_unselected_color">?colorAccent</item>
+
+    <!--
+       Changes the default layout padding for all Weekdays Buttons.
+       Defaults to 0dp.
+   -->
+    <item name="weekdays_layout_padding">8dp</item>
     <!-- 
         Changes the default background color for the Weekdays Buttons Bar (RecyclerView).
         Defaults to the default value of ?colorPrimary (the AppCompat theme attribute).
@@ -237,5 +237,5 @@ TextDrawable Library: https://github.com/afollestad/TextDrawable (fork)
 # Inspired by:
 
 Material Contextual Action Bar Library: https://github.com/afollestad/material-cab
-This Weekdays Buttons library is inspired by the attach implementation code in the 'material-cab' library designed by Aidan Follestad
+Weekdays Buttons library is inspired by the attach implementation code in the 'material-cab' library designed by Aidan Follestad
 If you need a Contextual Action Bar with similar api? look it up.
