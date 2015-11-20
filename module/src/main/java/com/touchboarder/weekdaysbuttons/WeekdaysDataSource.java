@@ -799,6 +799,7 @@ public class WeekdaysDataSource implements Parcelable {
         dest.writeInt(this.mViewHeight);
         dest.writeInt(this.mViewMargin);
         dest.writeInt(this.mViewGravity);
+        dest.writeInt(this.mLayoutPadding);
 
     }
 
@@ -829,7 +830,7 @@ public class WeekdaysDataSource implements Parcelable {
         this.mViewHeight= in.readInt();
         this.mViewMargin= in.readInt();
         this.mViewGravity= in.readInt();
-
+        this.mLayoutPadding= in.readInt();
 
 
     }
