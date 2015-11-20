@@ -4,17 +4,32 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
 
+    signingConfigs {
+        production {
+            keyAlias 'touchboarder_sample'
+            keyPassword 'sample'
+            storeFile file('./keystore.jks')
+            storePassword 'sample'
+        }
+    }
+
+
     defaultConfig {
-        applicationId "com.touchboarder.materialweekdaysdemo"
-        minSdkVersion 10
+        applicationId "com.touchboarder.demo.weekdaysbuttonsbar"
+        minSdkVersion 14
         targetSdkVersion 23
         versionCode 1
-        versionName "1.0"
+        versionName "0.1.0.0-alpha"
     }
     buildTypes {
+        debug {
+            signingConfig signingConfigs.production
+        }
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.production
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 }
@@ -22,7 +37,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:cardview-v7:23.1.1'
     compile project(':module')
     compile('com.github.afollestad.material-dialogs:core:0.8.5.1@aar') {
         transitive = true
