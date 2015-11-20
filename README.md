@@ -7,7 +7,22 @@ Material Weekdays Buttons allows you to easily implement a customizable and flex
 
 ## Gradle Dependency
 
-In progress...
+The following goes in your module's `build.gradle` file:
+
+```Gradle
+repositories {
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+
+    // ... other dependencies here
+
+     dependencies {
+            compile 'com.github.TouchBoarder:weekdays-buttons-bar:v0.1-alpha'
+     }
+}
+```
 
 
 
@@ -209,7 +224,7 @@ protected void onSaveInstanceState(Bundle outState) {
 }
 ```
 
-# Library depends on following external libraries:
+## Library depends on following external libraries:
 
 TextDrawable Library: https://github.com/afollestad/TextDrawable (fork)
     This library is used to create the drawables for the buttons:
@@ -234,8 +249,8 @@ TextDrawable Library: https://github.com/afollestad/TextDrawable (fork)
         .start(this);
  ``` 
 
-# Inspired by:
+### Inspired by:
 
 Material Contextual Action Bar Library: https://github.com/afollestad/material-cab
-Weekdays Buttons library is inspired by the attach implementation code in the 'material-cab' library designed by Aidan Follestad
+Weekdays Buttons library is inspired by the attach implementation code in the 'material-cab' library designed by Aidan Follestad.
 If you need a Contextual Action Bar with similar api? look it up.
