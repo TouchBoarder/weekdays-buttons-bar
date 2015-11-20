@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="weekdays_selected_color" format="color" />
+    <attr name="weekdays_unselected_color" format="color" />
+    <attr name="weekdays_text_selected_color" format="color" />
+    <attr name="weekdays_text_unselected_color" format="color" />
+    <attr name="weekdays_background_color" format="color" />
+    <attr name="weekdays_layout_padding" format="dimension" />
+
+    <attr name="weekdays_item_width" format="dimension" />
+    <attr name="weekdays_item_height" format="dimension" />
+    <attr name="weekdays_item_margin" format="dimension" />
+
+</resources>

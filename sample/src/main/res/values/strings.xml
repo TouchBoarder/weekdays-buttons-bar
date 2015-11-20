@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Material Weekdays Buttons Demo</string>
+    <string name="about">About</string>
+    <string name="dismiss">Dismiss</string>
+        <string name="about_body"><![CDATA[
+        <b>\'Material Weekdays Buttons Demo\'</b> <br/>
+        Sample app that demonstrates various use of the \'Weekdays Buttons Bar\' Library.
+        <br/><br/>
+        <b>\'Weekdays Buttons Bar\'</b> is an Android library that makes it easy to integrate weekdays selection in your layout.
+        It will attach itself to a provided layout R.id in your xml file that can be a ViewStub or a RecyclerView.
+
+        <p>
+        <b>XML</b>
+        <br/>
+        <font color="#607D8B">
+        ViewStub<br/>
+        android:id=\"@+id/weekdays_stub\"<br/>
+        android:layout_width=\"match_parent\"<br/>
+        android:layout_height=\"?actionBarSize\"<br/>
+        <br/>
+        </font>
+        <b>JAVA</b>
+        <br/>
+        <font color="#607D8B">
+        new WeekdaysDataSource(this, R.id.weekdays_stub)
+                        .start([Selection Callback]);
+        </font>
+        </p>
+
+     Library is designed by TouchBoarder (Harald Sigmond)<br/>
+
+        <a href=\'https://twitter.com/Touchboarder\'>Twitter</a>&nbsp;&nbsp;
+        <a href=\'https://plus.google.com/104792138317319747377\'>Google+</a>&nbsp;&nbsp;
+        <a href=\'https://github.com/TouchBoarder\'>GitHub</a>&nbsp;&nbsp;
+        <a href=\'http://play.google.com/store/apps/dev?id=6201664301997858157\'>Google Play</a>
+    ]]></string>
+</resources>

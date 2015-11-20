@@ -1,0 +1,86 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/colorPrimaryLight</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+
+        <!--&lt;!&ndash;-->
+    <!--Changes the default width for all Weekdays Buttons.-->
+    <!--Defaults to 36dp.-->
+<!--&ndash;&gt;-->
+        <!--<item name="weekdays_item_width">40dp</item>-->
+
+        <!--&lt;!&ndash;-->
+            <!--Changes the default height for all Weekdays Buttons.-->
+            <!--Defaults to 36dp.-->
+        <!--&ndash;&gt;-->
+        <!--<item name="weekdays_item_height">40dp</item>-->
+
+        <!--&lt;!&ndash;-->
+            <!--Changes the default margin spacing for all Weekdays Buttons.-->
+            <!--Defaults to 2dp.-->
+        <!--&ndash;&gt;-->
+        <!--<item name="weekdays_item_margin">0dp</item>-->
+
+        <!--&lt;!&ndash;-->
+           <!--Changes the default layout padding for all Weekdays Buttons.-->
+           <!--Defaults to 0dp.-->
+       <!--&ndash;&gt;-->
+        <!--<item name="weekdays_layout_padding">8dp</item>-->
+
+        <!--&lt;!&ndash;-->
+             <!--Changes the default selected color for all Weekdays Buttons.-->
+             <!--Defaults to the default value of ?colorAccent (the AppCompat theme attribute).-->
+         <!--&ndash;&gt;-->
+        <!--<item name="weekdays_selected_color">?colorPrimary</item>-->
+
+        <!--&lt;!&ndash;-->
+             <!--Changes the default unselected color for all Weekdays Buttons.-->
+             <!--Defaults to the default value of ?colorPrimary (the AppCompat theme attribute).-->
+         <!--&ndash;&gt;-->
+        <!--<item name="weekdays_unselected_color">?colorPrimaryDark</item>-->
+
+        <!--&lt;!&ndash;-->
+             <!--Changes the default text selected color for all Weekdays Buttons.-->
+             <!--Defaults to the default value of ?titleTextColor (the AppCompat theme attribute).-->
+         <!--&ndash;&gt;-->
+        <!--<item name="weekdays_text_selected_color">?colorAccent</item>-->
+
+        <!--&lt;!&ndash;-->
+             <!--Changes the default text unselected color for all Weekdays Buttons.-->
+             <!--Defaults to the default value of ?titleTextColor (the AppCompat theme attribute).-->
+         <!--&ndash;&gt;-->
+        <!--<item name="weekdays_text_unselected_color">?colorAccent</item>-->
+
+
+        <!--&lt;!&ndash;-->
+            <!--Changes the default background color for the Weekdays Buttons Bar (RecyclerView).-->
+            <!--Defaults to the default value of ?colorPrimary (the AppCompat theme attribute).-->
+        <!--&ndash;&gt;-->
+        <!--<item name="weekdays_background_color">?colorPrimaryDark</item>-->
+
+
+    </style>
+
+    <style name="StyleCardTitle" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@color/cardview_light_background</item>
+    </style>
+
+
+
+</resources>

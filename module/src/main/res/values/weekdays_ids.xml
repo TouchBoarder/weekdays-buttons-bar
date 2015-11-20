@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="weekdays_stub" type="id" />
+    <item name="weekdays_recycler_view" type="id" />
+    <item name="weekday_view" type="id" />
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="weekdays_button_default_width">36dp</dimen>
+    <dimen name="weekdays_button_default_height">36dp</dimen>
+    <dimen name="weekdays_button_default_margin">2dp</dimen>
+    <dimen name="weekdays_layout_default_padding">0dp</dimen>
+
+</resources>
