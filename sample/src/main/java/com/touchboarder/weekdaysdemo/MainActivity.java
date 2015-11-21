@@ -1,20 +1,32 @@
 package com.touchboarder.weekdaysdemo;
 
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
+import android.support.annotation.FloatRange;
+import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,8 +55,19 @@ public class MainActivity extends AppCompatActivity implements WeekdaysDataSourc
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setupAppBar();
+        ImageView imageView = (ImageView) getAppBar().findViewById(R.id.app_bar_image);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/TouchBoarder/weekdays-buttons-bar"));
+                startActivity(browserIntent);
+            }
+        });
+
         if (savedInstanceState != null) {
             // Restore the weekdaysDataSource state, save a reference to weekdaysDataSource.
+
             weekdaysDataSource1 = WeekdaysDataSource.restoreState("wds1", savedInstanceState, this, callback1, null);
             weekdaysDataSource2 = WeekdaysDataSource.restoreState("wds2", savedInstanceState, this, callback2, null);
             weekdaysDataSource3 = WeekdaysDataSource.restoreState("wds3", savedInstanceState, this, callback3, null);
@@ -65,9 +88,71 @@ public class MainActivity extends AppCompatActivity implements WeekdaysDataSourc
         }
     }
 
+    /**
+     * Set up the Caoll
+     */
+    private void setupAppBar() {
+
+        //Remove the title so we only  display the Image
+        if (getCollapsingToolbarLayout() != null) {
+            getCollapsingToolbarLayout().setTitle("");
+        }
+        // Retrieve the Toolbar from our content view, and set it as the action bar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if(getSupportActionBar()!=null)
+            getSupportActionBar().setTitle("");
+
+        //LANDSCAPE
+        if(getResources().getConfiguration().orientation== Configuration.ORIENTATION_LANDSCAPE) {
+            //Hide the appbar in landscape, it is still possible to scroll it down
+            if(getAppBar()!=null)
+                getAppBar().setExpanded(false);
+            setAppBarLayoutHeight(70);
+        }
+        //PORTRAIT
+        else {
+            setAppBarLayoutHeight(30);
+        }
+    }
+
+    /**
+     * @param divide Set AppBar height to screen height divided by 2->5
+     */
+    protected void setAppBarLayoutHeightScreenDivide(@IntRange(from = 2, to = 5) int divide) {
+        setAppBarLayoutHeight(100 / divide);
+    }
+
+    /**
+     * @param percent Set AppBar height to 20->50% of screen height
+     */
+    protected void setAppBarLayoutHeight(@IntRange(from = 20, to = 80) int percent) {
+        setAppBarLayoutHeight(percent / 100F);
+    }
+    /**
+     * @return AppBarLayout
+     */
+    private AppBarLayout appbar;
+    @Nullable
+    protected AppBarLayout getAppBar() {
+        if (appbar == null) appbar = (AppBarLayout) findViewById(R.id.appbar);
+        return appbar;
+    }
+    /**
+     * @param weight Set AppBar height to 0.2->0.5 weight of screen height
+     */
+    protected void setAppBarLayoutHeight(@FloatRange(from = 0.2F, to = 0.5F) float weight) {
+        if (getAppBar() != null) {
+            ViewGroup.LayoutParams params = getAppBar().getLayoutParams();
+            params.height = Math.round(getResources().getDisplayMetrics().heightPixels * weight);
+            getAppBar().setLayoutParams(params);
+        }
+    }
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+
         if (weekdaysDataSource1 != null) {
             // If the weekdaysDataSource isn't null, save it's state for restoration in onCreate()
             weekdaysDataSource1.saveState("wds1", outState);
@@ -89,6 +174,16 @@ public class MainActivity extends AppCompatActivity implements WeekdaysDataSourc
             weekdaysDataSource5.saveState("wds5", outState);
         }
 
+    }
+
+    /**
+     * @return CollapsingToolbarLayout collapsingAppBarLayout
+     */
+    private CollapsingToolbarLayout collapsingAppBarLayout;
+    @Nullable
+    protected CollapsingToolbarLayout getCollapsingToolbarLayout() {
+        if (collapsingAppBarLayout == null) collapsingAppBarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_appbar);
+        return collapsingAppBarLayout;
     }
 
     public void checkAll(View v) {
@@ -124,6 +219,7 @@ public class MainActivity extends AppCompatActivity implements WeekdaysDataSourc
                 break;
         }
     }
+
 
     public void setupWeekdaysButtons1() {
         weekdaysDataSource1 = new WeekdaysDataSource(this, R.id.weekdays_stub)

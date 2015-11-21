@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">Material Weekdays Buttons Demo</string>
     <string name="about">About</string>
+    <string name="bugs">Report Bugs</string>
     <string name="dismiss">Dismiss</string>
+
         <string name="about_body"><![CDATA[
         <b>\'Material Weekdays Buttons Demo\'</b> <br/>
         Sample app that demonstrates various use of the \'Weekdays Buttons Bar\' Library.
@@ -27,10 +29,10 @@
         </font>
         </p>
 
-     Library is designed by TouchBoarder (Harald Sigmond)<br/>
+     Library is designed by Harald Sigmond<br/><br/>
 
         <a href=\'https://twitter.com/Touchboarder\'>Twitter</a>&nbsp;&nbsp;
-        <a href=\'https://plus.google.com/104792138317319747377\'>Google+</a>&nbsp;&nbsp;
+        <a href=\'https://plus.google.com/+Touchboarder\'>Google+</a>&nbsp;&nbsp;
         <a href=\'https://github.com/TouchBoarder/weekdays-buttons-bar\'>GitHub</a>&nbsp;&nbsp;
         <a href=\'http://play.google.com/store/apps/dev?id=6201664301997858157\'>Google Play</a>
     ]]></string>
