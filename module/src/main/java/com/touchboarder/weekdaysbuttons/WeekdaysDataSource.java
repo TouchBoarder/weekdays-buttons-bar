@@ -110,6 +110,8 @@ public class WeekdaysDataSource implements Parcelable {
     private int mViewGravity = Gravity.CENTER;
     private int mLayoutPadding;
 
+    private boolean mNestedScrollEnable = false;
+
     private LinkedHashMap<Integer, String> mWeekdaysMap;
     private HashMap<Integer, Boolean> mSelectedDaysMap;
     private View mParentView = null;
@@ -231,6 +233,16 @@ public class WeekdaysDataSource implements Parcelable {
 
     public boolean getFillWidth() {
         return mFillWidth;
+    }
+
+    public boolean isNestedScrollEnable() {
+        return mNestedScrollEnable;
+    }
+    @UiThread
+    public WeekdaysDataSource setNestedScrollEnable(boolean enable) {
+        this.mNestedScrollEnable = enable;
+        if (mRecyclerView != null) mRecyclerView.setNestedScrollingEnabled(enable);
+        return this;
     }
 
     @UiThread
@@ -648,13 +660,18 @@ public class WeekdaysDataSource implements Parcelable {
         return getDrawableFromType( dayItem.getCalendarDayId(), dayItem.getTextDrawableType(), dayItem.getLabel(), dayItem.isSelected());
     }
 
+
     private void initRecyclerView(Context context) {
         if (mRecyclerView == null) return;
         mRecyclerView.setBackgroundColor(mBackgroundColor);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(createAdapter());
+        mRecyclerView.setNestedScrollingEnabled(isNestedScrollEnable());
+
+
 //        mRecyclerView.getItemAnimator().setSupportsChangeAnimations(true);
         RecyclerView.ItemAnimator animator = mRecyclerView.getItemAnimator();
         if (animator instanceof SimpleItemAnimator) {
@@ -801,6 +818,7 @@ public class WeekdaysDataSource implements Parcelable {
         dest.writeInt(this.mViewGravity);
         dest.writeInt(this.mLayoutPadding);
 
+        dest.writeByte(mNestedScrollEnable ? (byte) 1 : (byte) 0);
     }
 
     protected WeekdaysDataSource(Parcel in) {
@@ -832,7 +850,7 @@ public class WeekdaysDataSource implements Parcelable {
         this.mViewGravity= in.readInt();
         this.mLayoutPadding= in.readInt();
 
-
+        this.mNestedScrollEnable = in.readByte() != 0;
     }
 
     public static final Parcelable.Creator<WeekdaysDataSource> CREATOR = new Parcelable.Creator<WeekdaysDataSource>() {
