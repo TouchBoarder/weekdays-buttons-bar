@@ -1,8 +1,11 @@
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-weekdays--buttons--bar-green.svg?style=true)](https://android-arsenal.com/details/1/2822)
+
 # Material Weekdays Buttons Bar
 
-![Showcase Image](https://github.com/TouchBoarder/weekdays-buttons-bar/raw/master/art/screenshot1.png)
+Lets you easily implement a customizable and flexible weekdays 'button bar' in your app.
 
-Material Weekdays Buttons allows you to easily implement a customizable and flexible weekdays 'button bar' in your app.
+<img src="https://github.com/TouchBoarder/weekdays-buttons-bar/raw/master/art/screenshot1.png" width="480">
+
 
 ## Sample App
 
@@ -257,5 +260,6 @@ TextDrawable Library: https://github.com/afollestad/TextDrawable (fork)
 ### Inspired by:
 
 Material Contextual Action Bar Library: https://github.com/afollestad/material-cab
-Weekdays Buttons library is inspired by the attach implementation code in the 'material-cab' library designed by Aidan Follestad.
+
+Library is inspired by the attach implementation code in the 'material-cab' library designed by Aidan Follestad.
 If you need a Contextual Action Bar with similar api? look it up.
