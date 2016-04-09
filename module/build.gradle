@@ -21,10 +21,12 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:design:23.1.1'
+    compile 'com.android.support:design:23.3.0'
     compile 'com.android.support:multidex:1.0.1'
-    compile 'com.android.support:support-annotations:23.1.1'
-    compile 'com.android.support:recyclerview-v7:23.1.1'
-    compile 'com.afollestad:TextDrawable:8aa467a17d'
+    compile 'com.android.support:support-annotations:23.3.0'
+    compile 'com.android.support:recyclerview-v7:23.3.0'
+    compile('com.github.afollestad:TextDrawable:c32bc48d86') {
+        transitive = true
+    }
 
 }
