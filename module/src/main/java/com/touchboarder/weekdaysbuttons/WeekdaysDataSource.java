@@ -130,7 +130,7 @@ public class WeekdaysDataSource implements Parcelable {
         mParentView = view;
     }
 
-    public WeekdaysDataSource setWeekdayItemLayoutId(int mWeekdayLayoutId) {
+    public WeekdaysDataSource setWeekdayItemLayoutRes(@LayoutRes int mWeekdayLayoutId) {
         this.mWeekdayLayoutId = mWeekdayLayoutId;
         return this;
     }

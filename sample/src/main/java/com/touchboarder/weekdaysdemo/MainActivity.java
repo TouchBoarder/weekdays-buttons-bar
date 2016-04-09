@@ -5,7 +5,6 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.support.annotation.FloatRange;
 import android.support.annotation.IntRange;
@@ -22,7 +21,6 @@ import android.text.Html;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -287,7 +285,7 @@ public class MainActivity extends AppCompatActivity implements WeekdaysDataSourc
                 .setFillWidth(false)
                 .setTextColorUnselectedRes(R.color.colorPrimaryText)
                 .setUnselectedColor(Color.TRANSPARENT)
-                .setWeekdayItemLayoutId(R.layout.weekdays_image_view)
+                .setWeekdayItemLayoutRes(R.layout.weekdays_image_view)
                 .setNumberOfLetters(1)
                 .start(callback3);
     }
@@ -315,7 +313,7 @@ public class MainActivity extends AppCompatActivity implements WeekdaysDataSourc
 
     public void setupWeekdaysButtons4() {
         weekdaysDataSource4 = new WeekdaysDataSource(this, R.id.weekdays_sample_4)
-//                .setWeekdayItemLayoutId(R.layout.weekday_image_button)
+//                .setWeekdayItemLayoutRes(R.layout.weekday_image_button)
                 .setOnTextDrawableListener(drawableListener)
                 .setNumberOfLetters(3)
                 .start(callback4);
