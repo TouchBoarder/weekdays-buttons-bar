@@ -91,7 +91,7 @@ public class WeekdaysAdapter extends RecyclerView.Adapter<WeekdaysAdapter.ViewHo
         if(mLayoutId>0) view = LayoutInflater.from(parent.getContext()).inflate(mLayoutId, parent, false);
         if (view == null) {
             view=new FrameLayout(parent.getContext());
-            view.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT, Gravity.CENTER));
+            view.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.MATCH_PARENT, Gravity.CENTER));
             view.setPadding(layoutPadding,layoutPadding,layoutPadding,layoutPadding);
         }
         final ViewHolder h = new ViewHolder(view,mViewId);
