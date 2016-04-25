@@ -779,7 +779,7 @@ public class WeekdaysDataSource implements Parcelable {
             weekdaysDataSource.mContext = context;
             if (weekdaysDataSource.mIsVisible) {
                 weekdaysDataSource.setOnTextDrawableListener(drawableListener);
-                weekdaysDataSource.reset(context);
+//                weekdaysDataSource.reset(context);
                 weekdaysDataSource.start(callback);
 
             }
