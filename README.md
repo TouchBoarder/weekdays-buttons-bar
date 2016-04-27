@@ -1,4 +1,4 @@
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-weekdays--buttons--bar-green.svg?style=true)](https://android-arsenal.com/details/1/2822)
+[![](https://jitpack.io/v/TouchBoarder/weekdays-buttons-bar.svg)](https://jitpack.io/#TouchBoarder/weekdays-buttons-bar)[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-weekdays--buttons--bar-green.svg?style=true)](https://android-arsenal.com/details/1/2822)
 
 # Material Weekdays Buttons Bar
 
@@ -27,7 +27,7 @@ dependencies {
     // ... other dependencies here
 
      dependencies {
-            compile 'com.github.TouchBoarder:weekdays-buttons-bar:v1.0.0'
+            compile 'com.github.TouchBoarder:weekdays-buttons-bar:v1.0.1'
      }
 }
 ```
