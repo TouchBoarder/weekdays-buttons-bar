@@ -1,4 +1,5 @@
-[![](https://jitpack.io/v/TouchBoarder/weekdays-buttons-bar.svg)](https://jitpack.io/#TouchBoarder/weekdays-buttons-bar)[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-weekdays--buttons--bar-green.svg?style=true)](https://android-arsenal.com/details/1/2822)
+[![](https://jitpack.io/v/TouchBoarder/weekdays-buttons-bar.svg)](https://jitpack.io/#TouchBoarder/weekdays-buttons-bar)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-weekdays--buttons--bar-green.svg?style=true)](https://android-arsenal.com/details/1/2822)
 
 # Material Weekdays Buttons Bar
 
@@ -34,7 +35,7 @@ dependencies {
 
 
 
-## Attach
+## Implement
 
 This library attaches to your `Activity` by taking the place of a `ViewStub` in your Activity layout.
 For an example:
@@ -74,7 +75,7 @@ WeekdaysDataSource wds = new WeekdaysDataSource(this, R.id.weekdays_stub)
 
 Note that the parameter in `start()` is a Callback interface implementer which receives WeekdaysDataSource events.
 
-## Callback
+## Selection Callbacks
 
 Whether it's an Activity that implements the Callback interface, or an inline callback, it implements
 these methods:
