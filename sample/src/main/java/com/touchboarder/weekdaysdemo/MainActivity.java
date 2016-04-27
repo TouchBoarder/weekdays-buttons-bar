@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.FloatRange;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
@@ -15,7 +16,6 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.TextUtils;
@@ -32,9 +32,9 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
-import com.touchboarder.weekdaysbuttons.WeekdaysDrawableProvider;
 import com.touchboarder.weekdaysbuttons.WeekdaysDataItem;
 import com.touchboarder.weekdaysbuttons.WeekdaysDataSource;
+import com.touchboarder.weekdaysbuttons.WeekdaysDrawableProvider;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements WeekdaysDataSourc
     private WeekdaysDataSource weekdaysDataSource3;
     private WeekdaysDataSource weekdaysDataSource4;
     private WeekdaysDataSource weekdaysDataSource5;
+    private WeekdaysDataSource weekdaysDataSource6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +72,10 @@ public class MainActivity extends AppCompatActivity implements WeekdaysDataSourc
             weekdaysDataSource3 = WeekdaysDataSource.restoreState("wds3", savedInstanceState, this, callback3, null);
             weekdaysDataSource4 = WeekdaysDataSource.restoreState("wds4", savedInstanceState, this, callback4, drawableListener);
             weekdaysDataSource5 = WeekdaysDataSource.restoreState("wds5", savedInstanceState, this, this, null);
+            weekdaysDataSource6 = WeekdaysDataSource.restoreState("wds6", savedInstanceState, this, this, drawableListener);
 
             TextView textView = (TextView) findViewById(R.id.dialog_result_text);
-            if (textView != null&&weekdaysDataSource5!=null) {
+            if (textView != null && weekdaysDataSource5 != null) {
                 textView.setText(getSelectedDaysFromWeekdaysData(weekdaysDataSource5.getWeekdaysItems()));
             }
 
@@ -83,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements WeekdaysDataSourc
             setupWeekdaysButtons2();
             setupWeekdaysButtons3();
             setupWeekdaysButtons4();
+            setupWeekdaysButtons6();
         }
     }
 
@@ -98,13 +101,13 @@ public class MainActivity extends AppCompatActivity implements WeekdaysDataSourc
         // Retrieve the Toolbar from our content view, and set it as the action bar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        if(getSupportActionBar()!=null)
+        if (getSupportActionBar() != null)
             getSupportActionBar().setTitle("");
 
         //LANDSCAPE
-        if(getResources().getConfiguration().orientation== Configuration.ORIENTATION_LANDSCAPE) {
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             //Hide the appbar in landscape, it is still possible to scroll it down
-            if(getAppBar()!=null)
+            if (getAppBar() != null)
                 getAppBar().setExpanded(false);
             setAppBarLayoutHeight(70);
         }
@@ -127,15 +130,18 @@ public class MainActivity extends AppCompatActivity implements WeekdaysDataSourc
     protected void setAppBarLayoutHeight(@IntRange(from = 20, to = 80) int percent) {
         setAppBarLayoutHeight(percent / 100F);
     }
+
     /**
      * @return AppBarLayout
      */
     private AppBarLayout appbar;
+
     @Nullable
     protected AppBarLayout getAppBar() {
         if (appbar == null) appbar = (AppBarLayout) findViewById(R.id.appbar);
         return appbar;
     }
+
     /**
      * @param weight Set AppBar height to 0.2->0.5 weight of screen height
      */
@@ -171,16 +177,21 @@ public class MainActivity extends AppCompatActivity implements WeekdaysDataSourc
             // If the weekdaysDataSource isn't null, save it's state for restoration in onCreate()
             weekdaysDataSource5.saveState("wds5", outState);
         }
-
+        if (weekdaysDataSource6 != null) {
+            // If the weekdaysDataSource isn't null, save it's state for restoration in onCreate()
+            weekdaysDataSource6.saveState("wds6", outState);
+        }
     }
 
     /**
      * @return CollapsingToolbarLayout collapsingAppBarLayout
      */
     private CollapsingToolbarLayout collapsingAppBarLayout;
+
     @Nullable
     protected CollapsingToolbarLayout getCollapsingToolbarLayout() {
-        if (collapsingAppBarLayout == null) collapsingAppBarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_appbar);
+        if (collapsingAppBarLayout == null)
+            collapsingAppBarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_appbar);
         return collapsingAppBarLayout;
     }
 
@@ -226,18 +237,18 @@ public class MainActivity extends AppCompatActivity implements WeekdaysDataSourc
 
     private WeekdaysDataSource.Callback callback1 = new WeekdaysDataSource.Callback() {
         @Override
-        public void onWeekdaysItemClicked(int attachId,WeekdaysDataItem item) {
+        public void onWeekdaysItemClicked(int attachId, WeekdaysDataItem item) {
             CheckBox checkBox = (CheckBox) findViewById(R.id.check_all_1);
             if (checkBox != null) checkBox.setChecked(weekdaysDataSource1.isAllDaysSelected());
 
             Calendar calendar = Calendar.getInstance();
             int today = calendar.get(Calendar.DAY_OF_WEEK);
-            if(item.getCalendarDayId()==today&&item.isSelected())
-                Toast.makeText(MainActivity.this,"Carpe diem",Toast.LENGTH_SHORT).show();
+            if (item.getCalendarDayId() == today && item.isSelected())
+                Toast.makeText(MainActivity.this, "Carpe diem", Toast.LENGTH_SHORT).show();
         }
 
         @Override
-        public void onWeekdaysSelected(int attachId,ArrayList<WeekdaysDataItem> items) {
+        public void onWeekdaysSelected(int attachId, ArrayList<WeekdaysDataItem> items) {
             String selectedDays = getSelectedDaysFromWeekdaysData(items);
             if (!TextUtils.isEmpty(selectedDays))
                 showSnackbarShort(selectedDays);
@@ -259,18 +270,18 @@ public class MainActivity extends AppCompatActivity implements WeekdaysDataSourc
 
     private WeekdaysDataSource.Callback callback2 = new WeekdaysDataSource.Callback() {
         @Override
-        public void onWeekdaysItemClicked(int attachId,WeekdaysDataItem item) {
+        public void onWeekdaysItemClicked(int attachId, WeekdaysDataItem item) {
             CheckBox checkBox = (CheckBox) findViewById(R.id.check_all_2);
             if (checkBox != null) checkBox.setChecked(weekdaysDataSource2.isAllDaysSelected());
 
             Calendar calendar = Calendar.getInstance();
             int today = calendar.get(Calendar.DAY_OF_WEEK);
-            if(item.getCalendarDayId()==today&&item.isSelected())
-                Toast.makeText(MainActivity.this,"Carpe diem",Toast.LENGTH_SHORT).show();
+            if (item.getCalendarDayId() == today && item.isSelected())
+                Toast.makeText(MainActivity.this, "Carpe diem", Toast.LENGTH_SHORT).show();
         }
 
         @Override
-        public void onWeekdaysSelected(int attachId,ArrayList<WeekdaysDataItem> items) {
+        public void onWeekdaysSelected(int attachId, ArrayList<WeekdaysDataItem> items) {
             String selectedDays = getSelectedDaysFromWeekdaysData(items);
             if (!TextUtils.isEmpty(selectedDays))
                 showSnackbarShort(selectedDays);
@@ -292,19 +303,19 @@ public class MainActivity extends AppCompatActivity implements WeekdaysDataSourc
 
     private WeekdaysDataSource.Callback callback3 = new WeekdaysDataSource.Callback() {
         @Override
-        public void onWeekdaysItemClicked(int attachId,WeekdaysDataItem item) {
+        public void onWeekdaysItemClicked(int attachId, WeekdaysDataItem item) {
             CheckBox checkBox = (CheckBox) findViewById(R.id.check_all_3);
             if (checkBox != null) checkBox.setChecked(weekdaysDataSource3.isAllDaysSelected());
 
             Calendar calendar = Calendar.getInstance();
             int today = calendar.get(Calendar.DAY_OF_WEEK);
-            if(item.getCalendarDayId()==today&&item.isSelected())
-                Toast.makeText(MainActivity.this,"Carpe diem",Toast.LENGTH_SHORT).show();
+            if (item.getCalendarDayId() == today && item.isSelected())
+                Toast.makeText(MainActivity.this, "Carpe diem", Toast.LENGTH_SHORT).show();
 
         }
 
         @Override
-        public void onWeekdaysSelected(int attachId,ArrayList<WeekdaysDataItem> items) {
+        public void onWeekdaysSelected(int attachId, ArrayList<WeekdaysDataItem> items) {
             String selectedDays = getSelectedDaysFromWeekdaysData(items);
             if (!TextUtils.isEmpty(selectedDays))
                 showSnackbarShort(selectedDays);
@@ -321,7 +332,7 @@ public class MainActivity extends AppCompatActivity implements WeekdaysDataSourc
 
     private WeekdaysDataSource.Callback callback4 = new WeekdaysDataSource.Callback() {
         @Override
-        public void onWeekdaysItemClicked(int attachId,WeekdaysDataItem item) {
+        public void onWeekdaysItemClicked(int attachId, WeekdaysDataItem item) {
             CheckBox checkBox = (CheckBox) findViewById(R.id.check_all_4);
             if (checkBox != null) checkBox.setChecked(weekdaysDataSource4.isAllDaysSelected());
             if (item.getCalendarDayId() == Calendar.SATURDAY)
@@ -331,7 +342,7 @@ public class MainActivity extends AppCompatActivity implements WeekdaysDataSourc
         }
 
         @Override
-        public void onWeekdaysSelected(int attachId,ArrayList<WeekdaysDataItem> items) {
+        public void onWeekdaysSelected(int attachId, ArrayList<WeekdaysDataItem> items) {
             String selectedDays = getSelectedDaysFromWeekdaysData(items);
             if (!TextUtils.isEmpty(selectedDays))
                 showSnackbarShort(selectedDays);
@@ -339,10 +350,42 @@ public class MainActivity extends AppCompatActivity implements WeekdaysDataSourc
         }
     };
 
+    public void setupWeekdaysButtons6() {
+        weekdaysDataSource6 = new WeekdaysDataSource(this, R.id.weekdays_sample_6)
+                .setDrawableType(WeekdaysDrawableProvider.MW_RECT_BORDER)
+                .setFillWidth(false)
+                .setFirstDayOfWeek(Calendar.MONDAY)
+                //We override the onDrawTextDrawable to get a custom look
+                .setOnTextDrawableListener(drawableListener)
+                .setViewWidth(150)
+                .setViewMargin(2)
+                .setNumberOfLetters(10)
+                .start(this);
+    }
 
     WeekdaysDataSource.TextDrawableListener drawableListener = new WeekdaysDataSource.TextDrawableListener() {
         @Override
-        public Drawable onDrawTextDrawable(int weekdayLayoutId,int calendarId, String label, boolean selected) {
+        public Drawable onDrawTextDrawable(int weekdayLayoutId, int calendarId, String label, boolean selected) {
+
+            if (weekdayLayoutId == R.id.weekdays_sample_6) {
+                if (calendarId == Calendar.SATURDAY || calendarId == Calendar.SUNDAY) {
+                    return TextDrawable.builder(MainActivity.this)
+                            .beginConfig()
+                            .useFont(Typeface.MONOSPACE)
+                            .fontSize(WeekdaysDrawableProvider.toPx(MainActivity.this, 12))//px
+                            .withBorder(2)
+                            .endConfig()
+                            .buildRectRes(label, selected ? R.color.colorAccent : R.color.colorPrimary);
+                } else {
+                    return TextDrawable.builder(MainActivity.this)
+                            .beginConfig()
+                            .useFont(Typeface.MONOSPACE)
+                            .fontSize(WeekdaysDrawableProvider.toPx(MainActivity.this, 12))//px
+                            .withBorder(2)
+                            .endConfig()
+                            .buildRectRes(label, selected ? R.color.colorPrimaryDark : R.color.colorPrimary);
+                }
+            }
 
             if (weekdayLayoutId == R.id.weekdays_sample_4) {
                 if (calendarId == Calendar.SATURDAY)
@@ -458,25 +501,25 @@ public class MainActivity extends AppCompatActivity implements WeekdaysDataSourc
 
 
     @Override
-    public void onWeekdaysItemClicked(int attachId,WeekdaysDataItem item) {
+    public void onWeekdaysItemClicked(int attachId, WeekdaysDataItem item) {
 
 
         //Filter on the attached id if there is multiple weekdays data sources
-        if(attachId==R.id.weekdays_recycler_view){
+        if (attachId == R.id.weekdays_recycler_view) {
             Calendar calendar = Calendar.getInstance();
             int today = calendar.get(Calendar.DAY_OF_WEEK);
-            if(item.getCalendarDayId()==today&&item.isSelected())
-            Toast.makeText(MainActivity.this,"Carpe diem",Toast.LENGTH_SHORT).show();
+            if (item.getCalendarDayId() == today && item.isSelected())
+                Toast.makeText(MainActivity.this, "Carpe diem", Toast.LENGTH_SHORT).show();
         }
 
 
     }
 
     @Override
-    public void onWeekdaysSelected(int attachId,ArrayList<WeekdaysDataItem> items) {
-//        String selectedDays=getSelectedDaysFromWeekdaysData(items);
-//        if(!TextUtils.isEmpty(selectedDays))
-//            showSnackbarShort(selectedDays);
+    public void onWeekdaysSelected(int attachId, ArrayList<WeekdaysDataItem> items) {
+        String selectedDays = getSelectedDaysFromWeekdaysData(items);
+        if (!TextUtils.isEmpty(selectedDays))
+            showSnackbarShort(selectedDays);
     }
 
     @Override
@@ -498,6 +541,4 @@ public class MainActivity extends AppCompatActivity implements WeekdaysDataSourc
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 }

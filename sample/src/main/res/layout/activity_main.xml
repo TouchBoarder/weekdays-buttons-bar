@@ -80,6 +80,8 @@
 
                 <include layout="@layout/weekdays_card_5" />
 
+                <include layout="@layout/weekdays_card_6" />
+
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
     </android.support.design.widget.CoordinatorLayout>
