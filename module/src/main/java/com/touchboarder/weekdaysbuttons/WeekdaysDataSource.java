@@ -21,6 +21,7 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.UiThread;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -334,7 +335,7 @@ public class WeekdaysDataSource implements Parcelable {
 
     @UiThread
     public WeekdaysDataSource setBackgroundColorRes(@ColorRes int colorRes) {
-        return setBackgroundColor(mContext.getResources().getColor(colorRes));
+        return setBackgroundColor(ContextCompat.getColor(mContext,colorRes));
     }
 
 
@@ -353,7 +354,7 @@ public class WeekdaysDataSource implements Parcelable {
 
     @UiThread
     public WeekdaysDataSource setTextColorSelectedRes(@ColorRes int colorRes) {
-        return setTextColorSelected(mContext.getResources().getColor(colorRes));
+        return setTextColorSelected(ContextCompat.getColor(mContext,colorRes));
     }
 
 
@@ -372,7 +373,7 @@ public class WeekdaysDataSource implements Parcelable {
 
     @UiThread
     public WeekdaysDataSource setTextColorUnselectedRes(@ColorRes int colorRes) {
-        return setTextColorUnselected(mContext.getResources().getColor(colorRes));
+        return setTextColorUnselected(ContextCompat.getColor(mContext,colorRes));
     }
 
 
@@ -392,7 +393,7 @@ public class WeekdaysDataSource implements Parcelable {
 
     @UiThread
     public WeekdaysDataSource setSelectedColorRes(@ColorRes int colorRes) {
-        return setSelectedColor(mContext.getResources().getColor(colorRes));
+        return setSelectedColor(ContextCompat.getColor(mContext,colorRes));
     }
 
 
@@ -413,7 +414,7 @@ public class WeekdaysDataSource implements Parcelable {
 
     @UiThread
     public WeekdaysDataSource setUnselectedColorRes(@ColorRes int colorRes) {
-        return setUnselectedColor(mContext.getResources().getColor(colorRes));
+        return setUnselectedColor(ContextCompat.getColor(mContext,colorRes));
     }
 
 
