@@ -28,7 +28,7 @@ dependencies {
     // ... other dependencies here
 
      dependencies {
-            compile 'com.github.TouchBoarder:weekdays-buttons-bar:v1.0.1'
+            compile 'com.github.TouchBoarder:weekdays-buttons-bar:v1.0.2'
      }
 }
 ```
