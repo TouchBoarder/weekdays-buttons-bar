@@ -15,6 +15,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
@@ -369,37 +370,43 @@ public class MainActivity extends AppCompatActivity implements WeekdaysDataSourc
 
             if (weekdayLayoutId == R.id.weekdays_sample_6) {
                 if (calendarId == Calendar.SATURDAY || calendarId == Calendar.SUNDAY) {
-                    return TextDrawable.builder(MainActivity.this)
+                    return TextDrawable.builder()
                             .beginConfig()
                             .useFont(Typeface.MONOSPACE)
                             .fontSize(WeekdaysDrawableProvider.toPx(MainActivity.this, 12))//px
                             .withBorder(2)
                             .endConfig()
-                            .buildRectRes(label, selected ? R.color.colorAccent : R.color.colorPrimary);
+                            .buildRect(label, selected ?
+                                    ContextCompat.getColor(MainActivity.this, R.color.colorAccent)
+                                    : ContextCompat.getColor(MainActivity.this, R.color.colorPrimary));
                 } else {
-                    return TextDrawable.builder(MainActivity.this)
+                    return TextDrawable.builder()
                             .beginConfig()
                             .useFont(Typeface.MONOSPACE)
                             .fontSize(WeekdaysDrawableProvider.toPx(MainActivity.this, 12))//px
                             .withBorder(2)
                             .endConfig()
-                            .buildRectRes(label, selected ? R.color.colorPrimaryDark : R.color.colorPrimary);
+                            .buildRect(label, selected ?
+                                    ContextCompat.getColor(MainActivity.this, R.color.colorPrimaryDark)
+                                    : ContextCompat.getColor(MainActivity.this, R.color.colorPrimary));
                 }
             }
 
             if (weekdayLayoutId == R.id.weekdays_sample_4) {
                 if (calendarId == Calendar.SATURDAY)
-                    return WeekdaysDrawableProvider.getRectWithAnimation(MainActivity.this, 20, label, 200);
+                    return WeekdaysDrawableProvider.getRectWithAnimation(20, label, 200);
 
                 else
-                    return TextDrawable.builder(MainActivity.this)
+                    return TextDrawable.builder()
                             .beginConfig()
                             .useFont(Typeface.DEFAULT)
                             .fontSize(WeekdaysDrawableProvider.toPx(MainActivity.this, 14))//px
                             .textColor(selected ? Color.DKGRAY : Color.GRAY)
                             .bold()
                             .endConfig()
-                            .buildRoundRect(label, selected ? ColorGenerator.MATERIAL.getRandomColor() : Color.LTGRAY, WeekdaysDrawableProvider.toPx(MainActivity.this, 2));
+                            .buildRoundRect(label, selected ?
+                                    ColorGenerator.MATERIAL.getRandomColor()
+                                    : Color.LTGRAY, WeekdaysDrawableProvider.toPx(MainActivity.this, 2));
             }
             return null;
         }

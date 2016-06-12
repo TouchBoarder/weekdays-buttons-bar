@@ -10,17 +10,15 @@ import android.graphics.drawable.InsetDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.util.TypedValue;
 
-
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
-import com.amulyakhare.textdrawable.util.TypefaceHelper;
 
 
 /**
  * @author amulya
  * @datetime 17 Oct 2014, 4:02 PM
  * <p/>
- * Modified by TouchBoarder on 12/11/2015.
+ * Modified by TouchBoarder on 12/06/2016.
  */
 public class WeekdaysDrawableProvider {
 
@@ -39,6 +37,7 @@ public class WeekdaysDrawableProvider {
     public void setFontBaseSize(int fontBaseSize) {
         this.fontBaseSize = fontBaseSize;
     }
+
     public int getSelectedColor() {
         return selectedColor;
     }
@@ -82,7 +81,7 @@ public class WeekdaysDrawableProvider {
     private int unselectedColor = Color.DKGRAY;
     private int numberOfLetters = 1;
     private int fontBaseSize = 20;
-    private Typeface fontTypeFace = TypefaceHelper.get("sans-serif-light", 0);
+    private Typeface fontTypeFace;
 
     public WeekdaysDrawableProvider() {
         mGenerator = ColorGenerator.MATERIAL;
@@ -90,7 +89,7 @@ public class WeekdaysDrawableProvider {
 
     public Drawable getDrawableFromType(Context context, int type, String letter, boolean selected) {
         Drawable drawable = null;
-        if (context == null) return drawable;
+        if (context == null) return null;
         numberOfLetters = letter.length();
         switch (type) {
             case WeekdaysDrawableProvider.MW_RECT:
@@ -133,20 +132,28 @@ public class WeekdaysDrawableProvider {
     }
 
     public TextDrawable getRect(Context context, String text, boolean selected) {
-        return TextDrawable.builder(context)
+        return TextDrawable.builder()
                 .beginConfig()
-                .useFont(fontTypeFace)
+                .useFont(getFontTypeFace())
                 .fontSize(toPx(context, fontBaseSize - numberOfLetters))
                 .textColor(selected ? getTextColorSelected() : getTextColorUnselected())
                 .endConfig()
                 .buildRect(text, selected ? getSelectedColor() : getUnselectedColor());
     }
 
+    private Typeface getFontTypeFace() {
+        if (fontTypeFace == null)
+            fontTypeFace = Typeface.create("sans-serif-light", Typeface.NORMAL);
+        if (fontTypeFace == null)
+            fontTypeFace = Typeface.SANS_SERIF;
+        return fontTypeFace;
+    }
+
 
     public TextDrawable getRound(Context context, String text, boolean selected) {
-        return TextDrawable.builder(context)
+        return TextDrawable.builder()
                 .beginConfig()
-                .useFont(fontTypeFace)
+                .useFont(getFontTypeFace())
                 .fontSize(toPx(context, fontBaseSize - numberOfLetters))
                 .textColor(selected ? getTextColorSelected() : getTextColorUnselected())
                 .endConfig()
@@ -155,9 +162,9 @@ public class WeekdaysDrawableProvider {
 
 
     public TextDrawable getRoundRect(Context context, String text, boolean selected) {
-        return TextDrawable.builder(context)
+        return TextDrawable.builder()
                 .beginConfig()
-                .useFont(fontTypeFace)
+                .useFont(getFontTypeFace())
                 .fontSize(toPx(context, fontBaseSize - numberOfLetters))
                 .textColor(selected ? getTextColorSelected() : getTextColorUnselected())
                 .endConfig()
@@ -166,9 +173,9 @@ public class WeekdaysDrawableProvider {
 
 
     public TextDrawable getRectWithBorder(Context context, String text, boolean selected) {
-        return TextDrawable.builder(context)
+        return TextDrawable.builder()
                 .beginConfig()
-                .useFont(fontTypeFace)
+                .useFont(getFontTypeFace())
                 .fontSize(toPx(context, fontBaseSize - numberOfLetters))
                 .textColor(selected ? getTextColorSelected() : getTextColorUnselected())
                 .withBorder(toPx(context, 2))
@@ -178,9 +185,9 @@ public class WeekdaysDrawableProvider {
 
 
     public TextDrawable getRoundWithBorder(Context context, String text, boolean selected) {
-        return TextDrawable.builder(context)
+        return TextDrawable.builder()
                 .beginConfig()
-                .useFont(fontTypeFace)
+                .useFont(getFontTypeFace())
                 .fontSize(toPx(context, fontBaseSize - numberOfLetters))
                 .textColor(selected ? getTextColorSelected() : getTextColorUnselected())
                 .withBorder(toPx(context, 2))
@@ -190,9 +197,9 @@ public class WeekdaysDrawableProvider {
 
 
     public TextDrawable getRoundRectWithBorder(Context context, String text, boolean selected) {
-        return TextDrawable.builder(context)
+        return TextDrawable.builder()
                 .beginConfig()
-                .useFont(fontTypeFace)
+                .useFont(getFontTypeFace())
                 .fontSize(toPx(context, fontBaseSize - numberOfLetters))
                 .textColor(selected ? getTextColorSelected() : getTextColorUnselected())
                 .withBorder(toPx(context, 2))
@@ -202,9 +209,9 @@ public class WeekdaysDrawableProvider {
 
 
     public TextDrawable getRectWithMultiLetter(Context context, String text, boolean selected) {
-        return TextDrawable.builder(context)
+        return TextDrawable.builder()
                 .beginConfig()
-                .useFont(fontTypeFace)
+                .useFont(getFontTypeFace())
                 .fontSize(toPx(context, fontBaseSize))
                 .textColor(selected ? getTextColorSelected() : getTextColorUnselected())
                 .toUpperCase()
@@ -214,9 +221,9 @@ public class WeekdaysDrawableProvider {
 
 
     public TextDrawable getRoundWithCustomFont(Context context, String text, boolean selected) {
-        return TextDrawable.builder(context)
+        return TextDrawable.builder()
                 .beginConfig()
-                .useFont(fontTypeFace)
+                .useFont(getFontTypeFace())
                 .fontSize(toPx(context, fontBaseSize))
                 .textColor(selected ? getTextColorSelected() : getTextColorUnselected())
                 .bold()
@@ -227,7 +234,7 @@ public class WeekdaysDrawableProvider {
 
     public Drawable getRectWithCustomSize(Context context, String leftText, String rightText, boolean selected) {
 
-        TextDrawable.IBuilder builder = TextDrawable.builder(context)
+        TextDrawable.IBuilder builder = TextDrawable.builder()
                 .beginConfig()
                 .width(toPx(context, 29))
                 .withBorder(toPx(context, 2))
@@ -252,8 +259,8 @@ public class WeekdaysDrawableProvider {
     }
 
 
-    public static Drawable getRectWithAnimation(Context context, int count, String label, int delay) {
-        TextDrawable.IBuilder builder = TextDrawable.builder(context)
+    public static Drawable getRectWithAnimation(int count, String label, int delay) {
+        TextDrawable.IBuilder builder = TextDrawable.builder()
                 .rect();
 
 
