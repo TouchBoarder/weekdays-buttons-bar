@@ -235,9 +235,16 @@ protected void onSaveInstanceState(Bundle outState) {
 
 ## Library depends on following external libraries:
 
-TextDrawable Library: https://github.com/afollestad/TextDrawable (fork)
-    This library is used to create the drawables for the buttons:
-    If you want to take full control of this you can use the WeekdaysDataSource.TextDrawableListener
+**Update v1.0.2:**
+com.github.afollestad:TextDrawable have been removed from GitHub so it have been replaced with com.amulyakhare.textdrawable:1.0.1
+
+The difference:
+- The TextDrawable.builder constructor do no longer require a context
+- It does not support Resource values directly for colors. So instead use: ContextCompat.getColor(mContext, R.color.your_res_color)
+
+New TextDrawable Library: https://github.com/amulyakhare/TextDrawable
+This library is used to create the drawables for the buttons:
+If you want to take full control of this you can use the WeekdaysDataSource.TextDrawableListener
  ```java
     
     new WeekdaysDataSource(this, R.id.weekdays_stub)
@@ -245,14 +252,16 @@ TextDrawable Library: https://github.com/afollestad/TextDrawable (fork)
         .setOnTextDrawableListener(new WeekdaysDataSource.TextDrawableListener() {
             @Override
             public Drawable onDrawTextDrawable(int attachId, int calendarDayId, String label, boolean selected) {
-                return TextDrawable.builder(MainActivity.this)
+                return TextDrawable.builder()
                         .beginConfig()
                         .useFont(Typeface.DEFAULT)
                         .fontSize(WeekdaysDrawableProvider.toPx(MainActivity.this, 14))//px
                         .textColor(selected ? Color.DKGRAY : Color.GRAY)
                         .bold()
                         .endConfig()
-                        .buildRect(label, selected ? Color.RED : Color.LTGRAY);
+                        .buildRect(label, selected ? 
+                        ContextCompat.getColor(mContext, R.color.red) 
+                        : ContextCompat.getColor(mContext, R.color.grey));
             }
         })
         .start(this);
@@ -260,7 +269,7 @@ TextDrawable Library: https://github.com/afollestad/TextDrawable (fork)
 
 ### Inspired by:
 
-Material Contextual Action Bar Library: https://github.com/afollestad/material-cab
-
 Library is inspired by the attach implementation code in the 'material-cab' library designed by Aidan Follestad.
 If you need a Contextual Action Bar with similar api? look it up.
+
+Material Contextual Action Bar Library: https://github.com/afollestad/material-cab
