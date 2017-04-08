@@ -649,12 +649,15 @@ public class WeekdaysDataSource implements Parcelable {
         if (subStringLength > mNumberOfLetters)
             subStringLength = mNumberOfLetters;
 
+        String abbr = label.substring(0, subStringLength);
+        abbr = abbr.substring(0, 1).toUpperCase() + abbr.substring(1);
+
         Drawable drawable = null;
         if (textDrawableCallback != null)
-            drawable = textDrawableCallback.onDrawTextDrawable(mAttachId, calendarDayId, label.substring(0, subStringLength), selected);
+            drawable = textDrawableCallback.onDrawTextDrawable(mAttachId, calendarDayId, abbr, selected);
 
         if (drawable == null && getDrawableProvider() != null)
-            drawable = getDrawableProvider().getDrawableFromType(mContext, textDrawableType, label.substring(0, subStringLength), selected);
+            drawable = getDrawableProvider().getDrawableFromType(mContext, textDrawableType, abbr, selected);
         return drawable;
     }
 
